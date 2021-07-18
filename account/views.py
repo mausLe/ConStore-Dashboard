@@ -9,6 +9,10 @@ from .models import Watchlist
 # Create your views here.
 
 from PIL import Image
+import base64
+import numpy as np
+import cv2
+import io
 # img = Image.open(r"C:\Users\Maus\Pictures\ProfilewFrame.jpg")
 
 img = Image.open(r"account\static\img\img02.jpg")
@@ -49,11 +53,26 @@ def taskDetail(request, pk):
 
 @api_view(['POST'])
 def taskCreate(request):
-    serializer = TaskSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
+	serializer = TaskSerializer(data=request.data)
+	if serializer.is_valid():
+		serializer.save()	
+	img = serializer.data["image"]
+	# print(type(img))
+	base64_type = img.encode("utf-8")
+	decoded_utf = base64.decodebytes(base64_type)
+	byteImage = np.frombuffer(decoded_utf, dtype=np.uint8)
+	
+	frame = Image.open(io.BytesIO(byteImage))
+	frame.show()
+	
+	# frame = cv2.imdecode(byteImage, flags=1)
 
-    return Response(serializer.data)
+	# cv2.imshow("Image", frame)
+	# cv2.waitKey(0)
+
+	# return Response(serializer.data)
+	return Response('Item succsesfully created!')
+
 
 
 @api_view(['POST'])
