@@ -55,6 +55,7 @@ def taskCreate(request):
 
     return Response(serializer.data)
 
+
 @api_view(['POST'])
 def taskUpdate(request, pk):
     task = Watchlist.objects.get(id=pk)
