@@ -50,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'Dashboard.urls'
@@ -120,23 +122,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
 STATIC_URL = '/static/'
->>>>>>> parent of 06ddafb (Update settings.py)
-=======
-STATIC_URL = '/static/'
->>>>>>> parent of 06ddafb (Update settings.py)
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static'),
+    os.path.join(BASE_DIR,'/static/'),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
-STATIC_URL = '/static/'
-
-
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'static/img')
+MEDIA_ROOT = 'media'
