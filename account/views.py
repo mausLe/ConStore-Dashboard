@@ -11,7 +11,6 @@ from .models import Watchlist
 from PIL import Image
 import base64
 import numpy as np
-import cv2
 import io
 from django.db.models import Count
 import itertools
