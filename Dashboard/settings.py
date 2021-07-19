@@ -26,7 +26,9 @@ SECRET_KEY = '6n_g#tk1)f=7l8*kbhz0gl%c4%-)4cyaslnvnaw4k&fwvpzujg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["uit-constore.herokuapp.com", "127.0.0.1"]
+
+# ALLOWED_HOSTS = ["uit-constore.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["aiclub.uit.edu.vn", "127.0.0.1"]
 
 # Application definition
 
