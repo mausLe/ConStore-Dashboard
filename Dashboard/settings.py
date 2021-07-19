@@ -121,7 +121,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+STATIC_URL = '/static/'
+>>>>>>> parent of 06ddafb (Update settings.py)
 =======
 STATIC_URL = '/static/'
 >>>>>>> parent of 06ddafb (Update settings.py)
