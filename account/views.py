@@ -67,7 +67,7 @@ def home(request):
 		frame = Image.open(io.BytesIO(byteImage))
 		frame.save("account\static\img\img{}.jpg".format(data["id"]))
 
-		person = {"name": data["name"], "id": data["studentid"], "imageid":data["id"]}
+		person = {"name": data["name"], "id": data["studentid"], "imageid":data["id"], "type":data["type"]}
 		ctx.append(person)
 
 	
