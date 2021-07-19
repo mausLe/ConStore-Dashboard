@@ -58,11 +58,11 @@ def home(request):
 			date.append((i1, i2))
 
 	ctx = []
-	address = glob.glob("static\img\img*.jpg")
+	address = glob.glob("static/img/img*.jpg")
 	for i in range (0, len(serializer.data) - 10):
 		data = serializer.data[i]
 		
-		imgDir = "static\img\img{}.jpg".format(data["id"])
+		imgDir = "static/img/img{}.jpg".format(data["id"])
 		if imgDir not in address:
 			print("NOT IN A")
 			base64_type = data["image"].encode("utf-8")
@@ -70,7 +70,7 @@ def home(request):
 			byteImage = np.frombuffer(decoded_utf, dtype=np.uint8)
 
 			frame = Image.open(io.BytesIO(byteImage))
-			frame.save("static\img\img{}.jpg".format(data["id"]))
+			frame.save("static/img/img{}.jpg".format(data["id"]))
 
 		person = {"name": data["name"], "id": data["studentid"], "imageid":data["id"], "type":data["type"]}
 		ctx.append(person)
