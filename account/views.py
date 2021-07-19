@@ -17,7 +17,7 @@ import itertools
 from datetime import datetime
 # img = Image.open(r"C:\Users\Maus\Pictures\ProfilewFrame.jpg")
 
-# img = Image.open(r"account\static\img\img02.jpg")
+# img = Image.open(r"static\img\img02.jpg")
 
 
 def home(request):
@@ -64,7 +64,7 @@ def home(request):
 		byteImage = np.frombuffer(decoded_utf, dtype=np.uint8)
 
 		frame = Image.open(io.BytesIO(byteImage))
-		frame.save("account\static\img\img{}.jpg".format(data["id"]))
+		frame.save("static\img\img{}.jpg".format(data["id"]))
 
 		person = {"name": data["name"], "id": data["studentid"], "imageid":data["id"], "type":data["type"]}
 		ctx.append(person)
