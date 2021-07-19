@@ -43,14 +43,16 @@
 
 
       </style>
+
+       <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
   </head>
   <body >
-
-    <p>Context 0: {{context.0}}</p>
-
-    <p>Context 1: {{context.1}}</p>
-
-
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <img src="{% static 'img/logo_uit.png' %}" width= 100 height= auto>
+      <h1 style="color: rgb(255, 255, 255)";> <b>CONVENIENCE STORE MANAGEMENT DASHBOARD</b></h1>
+      
+    </nav>
 
     
     <div class="timeline-container" >
@@ -99,6 +101,11 @@
     {% endfor %}
 
     </div>
-
   </body>
+  <footer>
+    <p><b>Contact</b></p>	
+    <p>Tuan Anh Le - <a href="mailto:anhlt.cse@gmail.com">anhlt.cse@gmail.com</a></p>
+    <!--p>Author: XYZ</p-->
+    <!--p>Website is based on <a href="https://www.hatarilabs.com/ih-en/developing-geospatial-webapps-with-python-and-django-tutorial"> the origin</a> of HATARI LABS</p-->
+    </footer>
 </html>

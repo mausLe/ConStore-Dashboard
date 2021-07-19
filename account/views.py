@@ -35,7 +35,7 @@ def home(request):
 	out0 = [(day[-8:], len(list(this_day))) for day, this_day in grouped0]
 	out0 = out0[::-1]
 
-	print("OUT0: ", out0)
+	# print("OUT0: ", out0)
 	grouped = itertools.groupby(tasks, lambda d: d.get('time').strftime('%Y-%m-%d'))
 
 	out = [(day[-5:], len(list(this_day))) for day, this_day in grouped]
@@ -70,26 +70,28 @@ def home(request):
 		person = {"name": data["name"], "id": data["studentid"], "imageid":data["id"], "type":data["type"]}
 		ctx.append(person)
 
+	# print("NEW CONTEXT: ", ctx)
 	
 	new_ctx = []
 
 	start = 0
 
 	index = 0
-	print("DATE: ", date)
+	# print("DATE: ", date)
+	base = 0
 	for item in date:
+		base += item[1]
 		
-		# new_ctx.append(ctx[start:item[1]])
+		# new_ctx.append(ctx[start:base])
 		new_ctx.append([date[index][0]])
 		new_ctx[index].append(date[index][1])
 
-		new_ctx[index].append(ctx[start:item[1]])
+		new_ctx[index].append(ctx[start:base])
 
 		
-		start = item[1]
+		start += item[1]
 		index += 1
 
-	print("NEW CONTEXT: ", new_ctx)
 	# context.append(new_ctx)
 	# context.append(date)
 	# print("Serializer Data\n\n: ", context)
@@ -136,18 +138,17 @@ def taskCreate(request):
 	if serializer.is_valid():
 		serializer.save()	
 	img = serializer.data["image"]
-	# print(type(img))
+	
+	"""
 	base64_type = img.encode("utf-8")
 	decoded_utf = base64.decodebytes(base64_type)
 	byteImage = np.frombuffer(decoded_utf, dtype=np.uint8)
 	
 	frame = Image.open(io.BytesIO(byteImage))
-	frame.show()
+	"""
 	
 	# frame = cv2.imdecode(byteImage, flags=1)
 
-	# cv2.imshow("Image", frame)
-	# cv2.waitKey(0)
 
 	# return Response(serializer.data)
 	return Response('Item succsesfully created!')
