@@ -15,6 +15,7 @@ import io
 from django.db.models import Count
 import itertools
 from datetime import datetime
+import glob
 # img = Image.open(r"C:\Users\Maus\Pictures\ProfilewFrame.jpg")
 
 # img = Image.open(r"static\img\img02.jpg")
@@ -57,14 +58,19 @@ def home(request):
 			date.append((i1, i2))
 
 	ctx = []
+	address = glob.glob("static\img\img*.jpg")
 	for i in range (0, len(serializer.data) - 10):
 		data = serializer.data[i]
-		base64_type = data["image"].encode("utf-8")
-		decoded_utf = base64.decodebytes(base64_type)
-		byteImage = np.frombuffer(decoded_utf, dtype=np.uint8)
+		
+		imgDir = "static\img\img{}.jpg".format(data["id"])
+		if imgDir not in address:
+			print("NOT IN A")
+			base64_type = data["image"].encode("utf-8")
+			decoded_utf = base64.decodebytes(base64_type)
+			byteImage = np.frombuffer(decoded_utf, dtype=np.uint8)
 
-		frame = Image.open(io.BytesIO(byteImage))
-		frame.save("static\img\img{}.jpg".format(data["id"]))
+			frame = Image.open(io.BytesIO(byteImage))
+			frame.save("static\img\img{}.jpg".format(data["id"]))
 
 		person = {"name": data["name"], "id": data["studentid"], "imageid":data["id"], "type":data["type"]}
 		ctx.append(person)
@@ -115,12 +121,6 @@ def taskList(request):
 	tasks = Watchlist.objects.all().order_by('-id')
 
 	serializer = TaskSerializer(tasks, many=True)
-
-	for item in serializer.data:
-		print(item["name"])
-
-	
-	print(len(serializer.data))
 
 	return Response(serializer.data)
 
